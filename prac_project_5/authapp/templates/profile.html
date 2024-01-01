@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %} 
+<div class="container">
+  {% for i in messages %}
+    <div class="bg-success-subtle">
+        <h3 class="text-{{i.tags}}">{{i}}</h3>
+    </div>
+  {% endfor %}
+  <h1>Welcome to Profile Page</h1>
+  <h2>This is {{user}}</h2>
+  <p>Forget Password?<a href="{% url "pass_change2" %}" class="text-info text-decoration-none">Click Here</a></p>
+  <p>Want to Change Your Current Password?<a href="{% url "pass_change1" %}" class="text-info text-decoration-none">Click Here</a></p>
+</div> 
+{% endblock %}

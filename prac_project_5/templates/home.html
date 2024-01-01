@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+{% for i in messages %}
+<div class="bg-success-subtle">
+    <h3 class="text-{{i.tags}}">{{i}}</h3>
+</div>
+{% endfor %}
+{% endblock %}
