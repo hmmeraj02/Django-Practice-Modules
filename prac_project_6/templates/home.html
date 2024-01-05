@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<h1>Home Page</h1>
+<div class="table-responsive">
+  <table class="table table-bordered border-primary">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release Date</th>
+        {% if request.user.is_authenticated %}
+        <th scope="col">Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for song in data %}
+      <tr>
+        <th scope="row">{{song.musician.pk}}</th>
+        <td>{{song.musician.first_name}} {{song.musician.last_name}}</td>
+        <td>{{song.musician.email}}</td>
+        <td>{{song.rating}}</td>
+        <td>{{song.musician.instrument}}</td>
+        <td>{{song.name}}</td>
+        <td>{{song.release_date}}</td>
+        {% if request.user.is_authenticated %}
+        <td>
+            <a class="btn btn-primary" href="{% url "edit_musician" song.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url "delete_musician" song.id %}">Delete</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
